@@ -15,7 +15,7 @@ tempos = []
 memorias = []
 
 for i in range(5):
-    point_cloud = o3d.io.read_point_cloud("standforbunny.ply")
+    point_cloud = o3d.io.read_point_cloud(r"C:\Users\joao.santana\Downloads\lucy\lucy.ply")
     del point_cloud
     gc.collect()
 
@@ -24,7 +24,7 @@ for j in range(15):
 
     memoria_antes = medir_memoria()
 
-    point_cloud = o3d.io.read_point_cloud("standforbunny.ply")
+    point_cloud = o3d.io.read_point_cloud(r"C:\Users\joao.santana\Downloads\lucy\lucy.ply")
 
     memoria_final = medir_memoria()
     end = time.time()
@@ -44,11 +44,11 @@ gc.collect()
 tempos = []
 memorias = []
 
-point_cloud = o3d.io.read_point_cloud("standforbunny.ply")
+point_cloud = o3d.io.read_point_cloud(r"C:\Users\joao.santana\Downloads\lucy\lucy.ply")
 print(f"pontos restantes: {len(point_cloud.points)}")
 
 for i in range(5):
-    downsampling = point_cloud.voxel_down_sample(voxel_size = 0.01)
+    downsampling = point_cloud.voxel_down_sample(voxel_size = 5)
     del downsampling
     gc.collect()
 
@@ -57,7 +57,7 @@ for j in range(15):
 
     memoria_antes = medir_memoria()
 
-    downsampling = point_cloud.voxel_down_sample(voxel_size = 0.01)
+    downsampling = point_cloud.voxel_down_sample(voxel_size = 5)
 
     memoria_final = medir_memoria()
     end = time.time()
@@ -65,7 +65,9 @@ for j in range(15):
     tempos.append(end-start)
     memorias.append(memoria_final - memoria_antes)
 
-print(f"pontos restantes: {len(downsampling.points)}")
+    del downsampling
+    gc.collect()
+
 print("tempo total: ", statistics.mean(tempos))
 print("memoria final: ", statistics.mean(memorias))
 
@@ -75,24 +77,36 @@ gc.collect()
 tempos = []
 memorias = []
 
-point_cloud = o3d.io.read_point_cloud("standforbunny.ply")
-downsampling = point_cloud.voxel_down_sample(voxel_size = 0.01)
+point_cloud = o3d.io.read_point_cloud(r"C:\Users\joao.santana\Downloads\lucy\lucy.ply")
+downsampling = point_cloud.voxel_down_sample(voxel_size=5)
+
+for j in range(3):  # warm up
+    aux = point_cloud.voxel_down_sample(voxel_size=5)
+    aux.estimate_normals(
+        search_param=o3d.geometry.KDTreeSearchParamHybrid(radius=1, max_nn=30)
+    )
+
+    del aux
+    gc.collect()
 
 for i in range(15):
+    aux = o3d.geometry.PointCloud(downsampling)
     start = time.time()
 
     memoria_antes = medir_memoria()
 
-    downsampling.estimate_normals(
+    aux.estimate_normals(
         search_param=o3d.geometry.KDTreeSearchParamHybrid(radius=1, max_nn=30)
     )
 
     end = time.time()
 
     memoria_final = medir_memoria()
-
-    tempos.append(end-start)
+    tempos.append(end - start)
     memorias.append(memoria_final - memoria_antes)
+
+    del aux
+    gc.collect()
 
 print("tempo gasto: ", statistics.mean(tempos))
 print("memoria gasta: ", statistics.mean(memorias))
