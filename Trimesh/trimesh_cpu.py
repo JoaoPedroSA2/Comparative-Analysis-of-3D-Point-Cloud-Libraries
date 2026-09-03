@@ -13,7 +13,7 @@ def carregar_cpu_trimesh(caminho):
     cpus_porcentagem = []
 
     for i in range(3):
-        mesh = trimesh.load("standforbunny.ply")
+        mesh = trimesh.load(caminho)
 
     for j in range(15):
         start = time.perf_counter()

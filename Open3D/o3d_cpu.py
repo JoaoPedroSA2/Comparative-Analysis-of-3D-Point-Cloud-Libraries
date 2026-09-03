@@ -51,7 +51,7 @@ def downsample_cpu_o3d(caminho):
     cpus_percent = []
     cpus_time = []
 
-    point_cloud = o3d.io.read_point_cloud(r"C:\Users\joao.santana\Downloads\lucy\lucy.ply")
+    point_cloud = o3d.io.read_point_cloud(caminho)
 
     for _ in range(3):
         point_cloud.voxel_down_sample(voxel_size=5)
@@ -91,7 +91,7 @@ def normais_cpu_o3d(caminho):
     cpus_percent = []
     cpus_time = []
 
-    point_cloud = o3d.io.read_point_cloud(r"C:\Users\joao.santana\Downloads\lucy\lucy.ply")
+    point_cloud = o3d.io.read_point_cloud(caminho)
 
     downsampling = point_cloud.voxel_down_sample(voxel_size=5)
 

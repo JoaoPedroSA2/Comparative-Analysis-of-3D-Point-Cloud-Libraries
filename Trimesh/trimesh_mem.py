@@ -13,7 +13,7 @@ def carregar_mem_trimesh(caminho):
     memorias = []
 
     for i in range(3):
-        mesh = trimesh.load("standforbunny.ply")
+        mesh = trimesh.load(caminho)
         
         del mesh
         gc.collect()
@@ -22,7 +22,7 @@ def carregar_mem_trimesh(caminho):
         memoria_antes = medir_memoria()
         start = time.time()
         
-        mesh = trimesh.load("standforbunny.ply")
+        mesh = trimesh.load(caminho)
         
         end = time.time()
         memoria_final = medir_memoria()
