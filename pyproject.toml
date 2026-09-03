@@ -1,0 +1,22 @@
+[project]
+name = "comparative-analysis-of-3d-point-cloud-libraries"
+version = "0.1.0"
+description = "Add your description here"
+readme = "README.md"
+authors = [
+    { name = "Joao Pedro", email = "jpsa101106@gmail.com" }
+]
+requires-python = ">=3.12"
+dependencies = [
+    "open3d==0.19.0",
+    "pyntcloud==0.3.1",
+    "trimesh==4.11.5",
+    "psutil"
+]
+
+[project.scripts]
+comparative-analysis-of-3d-point-cloud-libraries = "comparative_analysis_of_3d_point_cloud_libraries:main"
+
+[build-system]
+requires = ["uv_build>=0.12.4,<0.13.0"]
+build-backend = "uv_build"
