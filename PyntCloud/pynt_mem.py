@@ -50,7 +50,7 @@ def downsample_mem_pynt(caminho):
     memorias = []
 
     point_cloud = PyntCloud.from_file(caminho)
-    print("pontos originais: ", point_cloud.points)
+    print("pontos originais: ", len(point_cloud.points))
 
     for j in range(15):
         memoria_antes = medir_memoria()

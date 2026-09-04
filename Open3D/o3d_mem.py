@@ -1,6 +1,7 @@
 import open3d as o3d
 import gc
 import time
+import copy
 import statistics
 from src.medir_mem import medir_memoria
 
@@ -81,14 +82,14 @@ def normais_mem_o3d(caminho):
     downsampling = point_cloud.voxel_down_sample(voxel_size = 5)
 
     for i in range(5):
-        aux = downsampling.copy()
+        aux = copy.deepcopy(downsampling)
         aux.estimate_normals(search_param=o3d.geometry.KDTreeSearchParamHybrid(radius=1, max_nn=30))
 
         del aux
         gc.collect()
 
     for i in range(15):
-        aux = downsampling.copy()
+        aux = copy.deepcopy(downsampling)
 
         start = time.time()
         memoria_antes = medir_memoria()

@@ -55,6 +55,7 @@ def downsample_cpu_pynt(caminho):
     cpus_tempo = []
 
     point_cloud = PyntCloud.from_file(caminho)
+    print(f"Pontos originais: {len(point_cloud.points)}")
 
     for i in range(3):
         voxelgrid_id = point_cloud.add_structure("voxelgrid", size_x = 5, size_y = 5, size_z = 5)
