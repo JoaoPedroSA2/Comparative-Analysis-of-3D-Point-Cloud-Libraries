@@ -42,4 +42,22 @@ Each dataset must contain:
 - `caminho`: path to the `.ply` file
 - `tipo`: `small`, `medium` or `large`
 
+Example:
+
+```python
+DATASETS = {
+    "bunny": {
+        "caminho": r"",
+        "tipo": "small"
+    }
+
+```
+
+## Results
+
+The results are saved automatically as:
+
+```text
+
+
 
