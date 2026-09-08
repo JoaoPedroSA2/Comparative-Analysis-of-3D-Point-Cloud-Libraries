@@ -58,6 +58,32 @@ DATASETS = {
 The results are saved automatically as:
 
 ```text
+resultados/resultados_{biblioteca}_{dataset}_{tipo}.txt
+
+```
+
+Containing the benchmark information for:
+
+- Open3d
+- PyntCloud
+- Trimesh
+
+## Author
+
+**João Pedro Santana Alves**
+
+Computer Science Student at **INATEL (National Institute of Telecommunications)**
+
+- 💻 GitHub: https://github.com/JoaoPedroSA2
+- 💼 LinkedIn: https://www.linkedin.com/in/joao-santana2/
+- 📧 Email: joao.santana@gec.inatel.br
+---
+
+## License
+
+This project is licensed under the **MIT License**. See the [LICENSE](LICENSE) file for more information.
+
+
 
 
 
